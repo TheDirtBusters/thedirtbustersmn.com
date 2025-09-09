@@ -1,0 +1,11 @@
+# Operating System Files
+Thumbs.db          # Windows
+desktop.ini        # Windows
+
+# Visual Studio Code
+.vscode/           # VS Code workspace settings
+
+*.log
+
+# Environment variables
+.env
