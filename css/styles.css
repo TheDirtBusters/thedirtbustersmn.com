@@ -1,0 +1,937 @@
+/* --- 1. Global Styles & Variables --- */
+:root {
+    --black: black;
+    --primary-blue: rgb(142, 182, 220);
+    --dark-blue: rgb(116, 145, 174);
+    --dark-gray: #333;
+    --gray: rgb(234, 234, 238);
+    --light-gray: #f9f9f9;
+    --white: #fff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+}
+
+h2 { 
+    margin-bottom: 20px; 
+}
+
+h3 { 
+    margin-bottom: 15px; 
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--primary-blue);
+    color: black;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--dark-blue);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- 2. Components --- */
+/* --- Header & Mobile Navigation (Hamburger) --- */
+.main-header {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 40px; 
+    width: auto;
+}
+
+.logo span {
+    font-size: 20px; 
+    font-weight: bold;
+    color: #007bff;
+}
+
+.hamburger-menu {
+    display: none; 
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger-menu .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px; 
+    padding: 10px 0; 
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.nav-links li a.active {
+    font-weight: bold;
+    color: var(--primary-blue);
+    border-bottom: 2px solid var(--primary-blue);
+}
+
+.nav-links li a:hover {
+    color: var(--primary-blue);
+}
+
+/* --- Mobile Styles (Hamburger Menu) --- */
+@media (max-width: 767px) {
+    .hamburger-menu {
+        display: flex; /* Show hamburger menu on small screens */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 60px; /* Adjust to be below the header */
+        left: 0;
+        width: 100%;
+        height: calc(100% - 60px);
+        background-color: white;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform 0.3s ease-in-out;
+        display: flex; /* Use flexbox for vertical stacking */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    /* Style for the active menu */
+    .nav-links.is-active {
+        transform: translateX(0); /* Slide into view */
+    }
+    
+    /* Hamburger animation when active */
+    .hamburger-menu.is-active .bar:first-child {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger-menu.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.is-active .bar:last-child {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+
+/* Basic Footer Styling */
+.site-footer {
+    background-color: #fff; 
+    padding: 30px 20px; 
+    font-family: Arial, sans-serif; 
+    color: #333;
+    text-align: center; 
+    border-top: 1px solid #eee; 
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.footer-logo img {
+    max-width: 400px; 
+    height: auto;
+    margin-bottom: 30px; 
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.footer-column {
+    text-align: center;
+}
+
+.footer-column h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: black;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    text-decoration-line: underline;
+    color: #555; 
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: black; 
+}
+
+.footer-column ul li a.active {
+    font-weight: bold;
+    color: var(--black);
+    text-decoration: none; /* Remove the underline on the active link */
+}
+
+.footer-column ul li a.active:hover {
+    color: var(--black); /* Keep the color consistent on hover */
+}
+
+.footer-copyright {
+    font-size: 1em;
+    color: black;
+    line-height: 1.5;
+}
+
+/* Quote Call to Action */
+.quote-cta {
+    background-color: var(--black);
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.quote-cta h2 {
+    font-size: 1.8em;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+/* --- 3. Page-Specific Sections (Mobile First) --- */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add some padding to the sides on smaller screens */
+}
+
+section {
+    padding: 40px 20px;
+}
+
+.section-title {
+    color: var(--black);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+/* --- Home Page (index.html) --- */
+.hero-section {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    max-width: 90%;
+}
+
+.testimonial-section {
+    background-color: var(--gray);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.testimonial-item p {
+    font-style: italic;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.testimonial-item .client-name {
+    font-weight: bold;
+    font-style: normal;
+    color: #555;
+}
+
+.professional-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.professional-item {
+    padding-top: 20px;
+    border-radius: 1px;
+}
+
+.professional-item img {
+    height: 130px;
+}
+
+.professional-item h3 {
+    font-size: 1.3em;
+    color: #333;
+}
+
+.difference-section {
+    background-color: rgb(142, 182, 220);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.difference-section h2 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 20px;
+}
+
+.before-after-image {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* --- Services Page (services.html) --- */
+.services-overview {
+    text-align: center;
+    background-color: var(--white);
+    padding: 60px 20px;
+}
+
+.services-overview .button {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.services-overview .button:hover {
+    background-color: var(--dark-gray);
+}
+
+.residential-services,
+.commercial-services {
+    background-color: var(--gray);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.service-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.commercial-image {
+    display: flex;
+    flex-direction: row; 
+}
+
+.service-text {
+    padding-top: 20px;
+}
+
+.commercial-services .section-title,
+.service-text .section-title {
+    text-align: center;
+}
+
+.service-text ul {
+    list-style-type: disc;
+    padding-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: left;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-text ul li {
+    background: none; /* remove background image on li */
+    padding-left: 3px;
+    margin-bottom: 3px;
+}
+
+.services-before-after {
+    padding: 0;
+}
+
+.services-before-after .before-after-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.quote-cta {
+    background-color: var(--black);
+    padding: 30px 20px;
+}
+
+.quote-cta h2 {
+    font-size: 1.8em;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+/* --- About Page (about.html) --- */
+.our-story-section {
+    background-color: var(--white);
+    text-align: center;
+}
+
+.title-line {
+    border: none;
+    height: 1px;
+    background-color: var(--dark-gray);
+    width: auto;
+    margin: 10px auto 10px auto;
+}
+
+.story-image img {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.commitment-section {
+    background-color: var(--gray);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.commitment-text {
+    font-size: 1.1em;
+    font-style: italic;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.team-section {
+    background-color: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.team-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.team-member img {
+    border-radius: 50%;
+    max-width: 250px;
+    height: 250px;
+    object-fit: cover;
+    margin: 0px auto 20px auto;
+}
+
+.team-member h3 {
+    margin-bottom: 5px;
+}
+
+.professional-description {
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 15px;
+}
+
+.team-member .role {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+/* --- Contact Form Page (contact.html) --- */
+.quote-form-section {
+    background-color: var(--white);
+    text-align: center;
+}
+
+.quote-form-section .section-title {
+    margin-bottom: 30px;
+}
+
+.intro-text,
+.contact-info {
+    font-size: 1em;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+#quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-field label {
+    font-weight: bold;
+}
+
+.form-field input,
+.form-field textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+.required {
+    font-size: 0.9em;
+    color: #888;
+    font-weight: normal;
+}
+
+.service-type p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.check-instruction {
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.button-send {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-send:hover {
+    background-color: var(--dark-gray);
+}
+
+/* --- 4. Desktop Styles (Media Queries) --- */
+@media (min-width: 768px) {
+    /* Components */
+    .hamburger-menu {
+        display: none;
+    }
+    .nav-links {
+        display: flex;
+        gap: 30px;
+    }
+    .nav-links li a {
+        padding: 5px 0;
+        font-size: 26px;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active {
+        border-bottom: 2px solid var(--black);
+    }
+    .site-footer {
+        text-align: left;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    .footer-logo {
+        flex: 0 0 auto;
+        margin-right: 50px;
+        margin-bottom: 0;
+        flex-direction: row;
+        align-items: center;
+    }
+    .footer-logo img {
+        margin-right: 15px;
+        margin-bottom: 0;
+    }
+    .footer-links {
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: center;
+        text-align: left;
+        gap: 80px;
+        margin-bottom: 0;
+    }
+    .footer-column {
+        text-align: left;
+    }
+    .footer-copyright {
+        flex-basis: 100%;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    /* Home Page */
+    .testimonial-section .content-wrapper,
+    .professional-section .content-wrapper,
+    .difference-section .content-wrapper {
+        display: flex; /* Make the content wrapper a flex container */
+        align-items: center;
+        gap: 50px;
+    }
+    .testimonial-section .content-wrapper,
+    .difference-section .content-wrapper {
+        flex-direction: column;
+    }
+    .hero-content h1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+        max-width: 800px;
+    }
+    .testimonial-section {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    .testimonial-item {
+        flex: 1;
+        min-width: 250px;
+        max-width: 45%;
+    }
+    .professional-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 20px;
+    }
+    .professional-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex-basis: 250px;
+        max-width: 30%;
+    }
+    .difference-section {
+        background-color: var(--primary-blue);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .before-after-image {
+        padding-bottom: 60px;
+    }
+    .difference-section h2 {
+        padding-top: 20px;
+    }
+    .before-after-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Services Page */
+    .residential-services .content-wrapper,
+    .commercial-services .content-wrapper {
+        display: flex; /* Make the content wrapper a flex container */
+        align-items: center;
+        gap: 50px;
+    }
+    .residential-services .service-content {
+        flex-direction: row-reverse;
+    }
+    .commercial-services .service-content {
+        display: flex;
+        flex-direction: row-reverse; /* Aligns text on the left and images on the right */
+        align-items: flex-start;
+        gap: 150px;
+    }
+    .commercial-services .content-wrapper {
+        display: flex;
+        align-items: flex-end;
+        gap: 50px;
+    }
+    .commercial-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* Important: This makes the container fill the height of its parent */
+    }
+    .commercial-services .section-title {
+        flex: 20%; /* Takes up 20% of the space */
+    }
+
+    .commercial-services p {
+        flex: 30%; /* Takes up 30% of the space */
+    }
+
+    /* This rule controls the size of the right column content */
+    .commercial-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    /* This rule makes Erik's image slightly smaller */
+    .commercial-content img {
+        height: auto;
+        max-height: 100vh;
+    }
+    .commercial-services .commercial-content img {
+        margin-top: 50px;
+    }
+    .commercial-services .service-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* This will center both the text and Erik's image */
+        text-align: center;
+        gap: 20px; /* Adds space between the text and the image */
+    }
+    .services-overview {
+        padding: 80px;
+    }
+    .service-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        text-align: left;
+    }
+    .service-text {
+        flex: 1;
+    }
+    .service-text ul {
+        margin-left: 0;
+        margin-right: auto;
+    }
+    .service-image {
+        flex: 1;
+    }
+    /* This rule makes the left image fill the available space */
+    .commercial-image {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* This aligns the image to the bottom of its container */
+        align-items: center;
+    }
+
+    .services-before-after {
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: transparent;
+        padding: 0;
+    }
+    .before-after-image {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .services-before-after .before-after-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    /* --- About Page (about.html) --- */
+    /* Our Story Section */
+    .our-story-section .content-wrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 50px;
+        text-align: left;
+    }
+
+    .story-text {
+        flex: 1;
+    }
+
+    .story-image {
+        flex: 1;
+    }
+
+    .title-line {
+        margin: 10px 0 30px;
+    }
+
+    /* Our Commitment Section */
+    .commitment-section .content-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        text-align: left;
+    }
+
+    .commitment-section .section-title,
+    .commitment-text {
+        flex: 1;
+    }
+    
+    .commitment-text {
+        font-style: normal;
+        max-width: none;
+    }
+    
+    /* Meet the Team Section */
+    .team-grid {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .team-member {
+        flex: 1;
+    }
+
+    /* --- Contact Form Page (contact.html) --- */
+    .quote-form-section .content-wrapper {
+        text-align: center;
+    }
+
+    #quote-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .form-field:nth-child(5) {
+        grid-column: 1 / span 2;
+    }
+
+    .form-field:nth-child(6) {
+        grid-column: 1 / span 2;
+    }
+
+    .service-type {
+        grid-column: 1 / span 2;
+    }
+
+    .button-send {
+        grid-column: 1 / span 2;
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote | The Dirt Busters</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        
+        <section class="quote-form-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Get a Free,<br>No-Obligation Quote</h2>
+                <p class="intro-text">We're excited to help you get started on your next window cleaning project. Please fill out the form below with some details about your needs, and we'll get back to you as soon as possible with a free quote. Or, feel free to reach out to us directly by text, call, or email!</p>
+                <div class="contact-info">
+                    <p>Jake: (507)202-5791<br>Erik: (507)322-8189<br>Peter: (763)312-3010<br>Email: thedirtbusters1@gmail.com</p>
+                </div>
+                
+                <form id="quote-form" action="https://formspree.io/f/xnnbwdvp" method="POST">
+                    
+                    <div class="form-field">
+                        <label for="firstName">First Name <span class="required">(required)</span></label>
+                        <input type="text" id="firstName" name="First Name" placeholder="e.g. John" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="lastName">Last Name <span class="required">(required)</span></label>
+                        <input type="text" id="lastName" name="Last Name" placeholder="e.g. Smith" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">Email </label>
+                        <input type="email" id="email" name="Email" placeholder="e.g. you@example.com">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="address">Service Address <span class="required">(required)</span></label>
+                        <input type="text" id="address" name="Service Address" placeholder="e.g. 123 Main St, Rochester, MN" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="phone">Phone Number <span class="required">(required)</span></label>
+                        <input type="tel" id="phone" name="Phone Number" placeholder="e.g. (555) 555-5555" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="project-details">Tell us about your project</label>
+                        <textarea id="project-details" name="Project Details" rows="4" placeholder="e.g. If you'd like, tell us a little bit about your project and what you need done."></textarea>
+                    </div>
+
+                    <div class="form-field service-type">
+                        <p>Service Type <span class="required">(required)</span></p>
+                        <p class="check-instruction">Check 1 or more</p>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="Service Type" value="Residential"> Residential</label>
+                            <label><input type="checkbox" name="Service Type" value="Commercial"> Commercial</label>
+                            <label><input type="checkbox" name="Service Type" value="High Rise"> High Rise</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="button-send">SEND</button>
+
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="js/loadHeaderFooter.js"></script>
+
+</body>
+</html>
