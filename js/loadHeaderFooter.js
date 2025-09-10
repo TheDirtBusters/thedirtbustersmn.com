@@ -26,12 +26,17 @@ function setupNavigation() {
         });
     }
 
+    // Get the current URL pathname
+    const currentPathname = window.location.pathname;
+
     // Set the active navigation link based on the current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const allLinks = document.querySelectorAll('a'); // Select all links on the page
+    const allLinks = document.querySelectorAll('a');
 
     allLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
+        const linkHref = link.getAttribute('href');
+
+        // Check if the link's href matches the current pathname
+        if (linkHref === currentPathname) {
             link.classList.add('active');
 
             // Add a click event listener to the active link to prevent page refresh
@@ -44,8 +49,8 @@ function setupNavigation() {
 
 // When the entire page is loaded, load the header and then set up the navigation
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadComponent('header-placeholder', 'components/header.html');
-    await loadComponent('footer-placeholder', 'components/footer.html');
+    await loadComponent('header-placeholder', '/components/header.html');
+    await loadComponent('footer-placeholder', '/components/footer.html');
 
     // Now that the header is on the page, set up the navigation
     setupNavigation();

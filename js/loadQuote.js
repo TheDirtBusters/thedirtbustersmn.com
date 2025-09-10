@@ -1,4 +1,4 @@
-fetch('components/request-a-quote.html')
+fetch('/components/request-a-quote.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('quote-placeholder').innerHTML = data;
